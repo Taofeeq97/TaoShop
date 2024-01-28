@@ -24,6 +24,7 @@ const ProductScreen = () => {
       }
   
       fetchProduct();
+      console.log(product)
       
     }, [id])
   

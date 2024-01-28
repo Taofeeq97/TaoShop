@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from .products import products
+from .models import Product
+from .serializers import ProductSerializer
 
 
 
@@ -24,18 +27,18 @@ class GetRoutesAPIView(APIView):
 
 
 class ProductListAPIView(APIView):
+    serializer_class = ProductSerializer
+
     def get(self, request):
-        return Response(products)
+        products = Product.objects.all()
+        serializer = self.serializer_class(products, many=True)
+        return Response(serializer.data)
     
 
 class ProductDetailAPIView(APIView):
+    serializer_class = ProductSerializer
 
     def get(self, request, pk):
-
-        product=None
-        for i in products:
-            if i['_id'] == str(pk):
-                product = i
-              
-                break
-        return Response(product)
+        product = Product.objects.filter(id=pk).first()
+        serializer = self.serializer_class(product)
+        return Response(serializer.data)
