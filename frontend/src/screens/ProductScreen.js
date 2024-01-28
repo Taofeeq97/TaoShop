@@ -14,7 +14,6 @@ import axios from 'axios'
 
 const ProductScreen = () => {
     const {id} = useParams();
-    console.log(id)
     const [product, setProduct] = useState([]);
 
     useEffect(() => {
@@ -24,7 +23,6 @@ const ProductScreen = () => {
       }
   
       fetchProduct();
-      console.log(product)
       
     }, [id])
   
