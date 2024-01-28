@@ -21,9 +21,7 @@ const ProductScreen = () => {
         const {data} = await axios.get(`/api/products/${id}`)
         setProduct(data);
       }
-  
       fetchProduct();
-      
     }, [id])
   
     if (!product) {
