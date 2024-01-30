@@ -52,8 +52,8 @@ export const productDetailReducers = (state = {product:{reviews:[]}}, action) =>
                 loading:false,
                 error:action.payload
             }
-        
-           default:
-                return state
+            
+        default:
+            return state
     }
 }

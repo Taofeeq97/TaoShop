@@ -24,7 +24,6 @@ const ProductScreen = () => {
     const {loading, error, product} = detailProduct
     const navigate = useNavigate();
 
-
     useEffect(() => {
       dispatch(productDetail(id))
     }, [dispatch, id])
