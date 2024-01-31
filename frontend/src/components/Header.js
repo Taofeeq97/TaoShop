@@ -19,7 +19,6 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    console.log('Logout clicked')
     dispatch(Logout())
   }
 
@@ -39,7 +38,9 @@ const Header = () => {
 
             {userInfo ? (
               <NavDropdown title={userInfo.name} id='username'>
-                  <LinkContainer to='/profile'>
+                  <LinkContainer 
+                  to='/profile'
+                  >
                     <NavDropdown.Item>
                       Profile
                     </NavDropdown.Item>

@@ -30,6 +30,25 @@ class RegisterUserAPIView(APIView):
 
             serializer = self.serializer_class(user)
             return Response(serializer.data)
+
+
+class UpdateUserProfileAPIView(APIView):
+    serializer_class = UserSerializerWithToken
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        serializer = self.serializer_class(user)
+        data = request.data
+        user.first_name = data['name']
+        user.email = data['email']
+        user.username = data['email']
+
+        if data['password'] != '':
+            user.set_password(data['passwors'])
+        
+        user.save()
+        return Response(serializer.data)
     
 
 class UserProfileAPIView(APIView):
